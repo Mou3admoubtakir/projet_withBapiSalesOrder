@@ -1,0 +1,57 @@
+<!DOCTYPE html  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>ZMOU_V1_REVIEW</title>
+<meta name="GENERATOR" content="AB4Editor Control" />
+<style type="text/css">
+SPAN {
+font-family: "Courier New";
+font-size: 10pt;
+color: #000000;
+background: #FFFFFF;
+}
+.L0S31 {
+font-style: italic;
+color: #808080;
+}
+.L0S52 {
+color: #0000FF;
+}
+.L0S55 {
+color: #800080;
+}
+</style>
+</head>
+<body>
+<span><span class="L0S31">*&amp;---------------------------------------------------------------------*</span><br>
+<span class="L0S31">*&amp;&nbsp;Report&nbsp;ZMOU_V1_REVIEW</span><br>
+<span class="L0S31">*&amp;---------------------------------------------------------------------*</span><br>
+<span class="L0S31">*&amp;</span><br>
+<span class="L0S31">*&amp;---------------------------------------------------------------------*</span><br>
+<span class="L0S52">REPORT&nbsp;</span>zmou_v1_review<span class="L0S55">.</span><br>
+<br>
+<br>
+<span class="L0S52">INCLUDE</span><span class="L0S55">:&nbsp;</span>ZMOU_V1_REVIEW_top<span class="L0S55">,</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ZMOU_V1_REVIEW_scr<span class="L0S55">,</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ZMOU_V1_REVIEW_frm<span class="L0S55">.</span><br>
+<br>
+<span class="L0S52">INITIALIZATION</span><span class="L0S55">.</span><br>
+<br>
+<span class="L0S52">START-OF-SELECTION</span><span class="L0S55">.</span><br>
+<br>
+<span class="L0S52">END-OF-SELECTION</span><span class="L0S55">.</span><br>
+<br>
+<br>
+<span class="L0S52">AT&nbsp;</span><span class="L0S52">SELECTION-SCREEN&nbsp;</span><span class="L0S52">ON&nbsp;</span><span class="L0S52">VALUE-REQUEST&nbsp;</span><span class="L0S52">FOR&nbsp;</span>p_file_c<span class="L0S55">.</span><br>
+&nbsp;&nbsp;<span class="L0S52">PERFORM&nbsp;</span>readData<span class="L0S55">.</span><br>
+&nbsp;&nbsp;<span class="L0S52">IF&nbsp;</span>gt_datatab&nbsp;<span class="L0S52">IS&nbsp;</span><span class="L0S52">NOT&nbsp;</span><span class="L0S52">INITIAL</span><span class="L0S55">.</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="L0S52">PERFORM&nbsp;</span>creat_order<span class="L0S55">.</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="L0S52">PERFORM&nbsp;</span>display_alv<span class="L0S55">.</span><br>
+&nbsp;&nbsp;<span class="L0S52">ENDIF</span><span class="L0S55">.</span><br>
+<br>
+<span class="L0S52">AT&nbsp;</span><span class="L0S52">SELECTION-SCREEN&nbsp;</span><span class="L0S52">ON&nbsp;</span><span class="L0S52">VALUE-REQUEST&nbsp;</span><span class="L0S52">FOR&nbsp;</span>p_file_m<span class="L0S55">.</span><br>
+&nbsp;&nbsp;<span class="L0S52">PERFORM&nbsp;</span>readData_modif<span class="L0S55">.</span><br>
+&nbsp;&nbsp;<span class="L0S52">IF&nbsp;</span>gt_modif&nbsp;<span class="L0S52">IS&nbsp;</span><span class="L0S52">NOT&nbsp;</span><span class="L0S52">INITIAL</span><span class="L0S55">.</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="L0S52">PERFORM&nbsp;</span>modifSo<span class="L0S55">.</span><br>
+&nbsp;&nbsp;<span class="L0S52">ENDIF</span><span class="L0S55">.</span></span>
+</body>

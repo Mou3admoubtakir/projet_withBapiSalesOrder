@@ -1,0 +1,48 @@
+<!DOCTYPE html  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>ZMOU_V1_REVIEW_SCR</title>
+<meta name="GENERATOR" content="AB4Editor Control" />
+<style type="text/css">
+SPAN {
+font-family: "Courier New";
+font-size: 10pt;
+color: #000000;
+background: #FFFFFF;
+}
+.L0S31 {
+font-style: italic;
+color: #808080;
+}
+.L0S33 {
+color: #4DA619;
+}
+.L0S52 {
+color: #0000FF;
+}
+.L0S55 {
+color: #800080;
+}
+.L0S70 {
+color: #808080;
+}
+</style>
+</head>
+<body>
+<span><span class="L0S31">*&amp;---------------------------------------------------------------------*</span><br>
+<span class="L0S31">*&amp;&nbsp;Include&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ZMOU_V1_REVIEW_SCR</span><br>
+<span class="L0S31">*&amp;---------------------------------------------------------------------*</span><br>
+<br>
+<span class="L0S52">SELECTION-SCREEN&nbsp;</span><span class="L0S55">:&nbsp;</span><span class="L0S52">BEGIN&nbsp;</span><span class="L0S52">OF&nbsp;</span><span class="L0S52">BLOCK&nbsp;</span>B01&nbsp;<span class="L0S52">WITH&nbsp;</span><span class="L0S52">FRAME&nbsp;</span><span class="L0S52">TITLE&nbsp;</span><span class="L0S52">TEXT</span><span class="L0S70">-</span>t01<span class="L0S55">.</span><br>
+&nbsp;&nbsp;<span class="L0S52">PARAMETERS&nbsp;</span><span class="L0S55">:&nbsp;</span>r_creat&nbsp;<span class="L0S52">RADIOBUTTON&nbsp;</span><span class="L0S52">GROUP&nbsp;</span>rba&nbsp;<span class="L0S52">DEFAULT&nbsp;</span><span class="L0S33">'X'&nbsp;</span><span class="L0S52">USER-COMMAND&nbsp;</span>us1<span class="L0S55">,</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;r_modif&nbsp;<span class="L0S52">RADIOBUTTON&nbsp;</span><span class="L0S52">GROUP&nbsp;</span>rba<span class="L0S55">.</span><br>
+<span class="L0S52">SELECTION-SCREEN&nbsp;</span><span class="L0S55">:&nbsp;</span><span class="L0S52">END&nbsp;</span><span class="L0S52">OF&nbsp;</span><span class="L0S52">BLOCK&nbsp;</span>b01<span class="L0S55">.</span><br>
+<br>
+<span class="L0S52">SELECTION-SCREEN&nbsp;</span><span class="L0S55">:&nbsp;</span><span class="L0S52">BEGIN&nbsp;</span><span class="L0S52">OF&nbsp;</span><span class="L0S52">BLOCK&nbsp;</span>b02&nbsp;<span class="L0S52">WITH&nbsp;</span><span class="L0S52">FRAME&nbsp;</span><span class="L0S52">TITLE&nbsp;</span><span class="L0S52">TEXT</span><span class="L0S70">-</span>t02<span class="L0S55">.</span><br>
+&nbsp;&nbsp;<span class="L0S52">PARAMETERS</span><span class="L0S55">:&nbsp;</span>p_file_c&nbsp;<span class="L0S52">TYPE&nbsp;&nbsp;</span>rlgrap<span class="L0S70">-</span>filename&nbsp;MODIF&nbsp;<span class="L0S52">ID&nbsp;</span>id1<span class="L0S55">,</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;p_file_m&nbsp;<span class="L0S52">TYPE&nbsp;</span>rlgrap<span class="L0S70">-</span>filename&nbsp;MODIF&nbsp;<span class="L0S52">ID&nbsp;</span>id2<span class="L0S55">.</span><br>
+<span class="L0S52">SELECTION-SCREEN&nbsp;</span><span class="L0S55">:&nbsp;</span><span class="L0S52">END&nbsp;</span><span class="L0S52">OF&nbsp;</span><span class="L0S52">BLOCK&nbsp;</span>b02<span class="L0S55">.</span><br>
+<br>
+<span class="L0S52">at&nbsp;</span><span class="L0S52">SELECTION-SCREEN&nbsp;</span><span class="L0S52">OUTPUT</span><span class="L0S55">.</span><br>
+&nbsp;&nbsp;<span class="L0S52">PERFORM&nbsp;</span>prep_screen<span class="L0S55">.</span></span>
+</body>

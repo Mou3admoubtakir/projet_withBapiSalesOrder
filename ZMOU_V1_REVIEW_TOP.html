@@ -1,0 +1,116 @@
+<!DOCTYPE html  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>ZMOU_V1_REVIEW_TOP</title>
+<meta name="GENERATOR" content="AB4Editor Control" />
+<style type="text/css">
+SPAN {
+font-family: "Courier New";
+font-size: 10pt;
+color: #000000;
+background: #FFFFFF;
+}
+.L0S31 {
+font-style: italic;
+color: #808080;
+}
+.L0S32 {
+color: #3399FF;
+}
+.L0S33 {
+color: #4DA619;
+}
+.L0S52 {
+color: #0000FF;
+}
+.L0S55 {
+color: #800080;
+}
+.L0S70 {
+color: #808080;
+}
+</style>
+</head>
+<body>
+<span><span class="L0S31">*&amp;---------------------------------------------------------------------*</span><br>
+<span class="L0S31">*&amp;&nbsp;Include&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ZMOU_V1_REVIEW_TOP</span><br>
+<span class="L0S31">*&amp;---------------------------------------------------------------------*</span><br>
+<span class="L0S52">DATA&nbsp;</span><span class="L0S55">:&nbsp;</span>gt_datacmd&nbsp;<span class="L0S52">TYPE&nbsp;</span><span class="L0S52">TABLE&nbsp;</span><span class="L0S52">OF&nbsp;</span>string<span class="L0S55">.</span><br>
+<span class="L0S52">TYPE-POOLS</span><span class="L0S55">:&nbsp;</span>truxs<span class="L0S55">.</span><br>
+<span class="L0S52">DATA&nbsp;</span><span class="L0S55">:&nbsp;</span>o_events&nbsp;<span class="L0S52">TYPE&nbsp;</span><span class="L0S52">REF&nbsp;</span><span class="L0S52">TO&nbsp;</span>cl_salv_events_table<span class="L0S55">.</span><br>
+&nbsp;&nbsp;<span class="L0S52">DATA</span><span class="L0S55">:&nbsp;</span>lr_columns&nbsp;<span class="L0S52">TYPE&nbsp;</span><span class="L0S52">REF&nbsp;</span><span class="L0S52">TO&nbsp;</span>cl_salv_columns_table<span class="L0S55">,</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lr_column&nbsp;&nbsp;<span class="L0S52">TYPE&nbsp;</span><span class="L0S52">REF&nbsp;</span><span class="L0S52">TO&nbsp;</span>cl_salv_column<span class="L0S55">.</span><br>
+<span class="L0S52">DATA&nbsp;</span><span class="L0S55">:&nbsp;</span>p_head&nbsp;<span class="L0S52">VALUE&nbsp;</span><span class="L0S33">'X'</span><span class="L0S55">.</span><br>
+<span class="L0S52">DATA&nbsp;</span><span class="L0S55">:&nbsp;</span>gv_itemNumber&nbsp;<span class="L0S52">TYPE&nbsp;</span>vbap<span class="L0S70">-</span>posnr<span class="L0S55">.</span><br>
+<br>
+<span class="L0S52">DATA&nbsp;</span>lt_items&nbsp;<span class="L0S52">TYPE&nbsp;</span><span class="L0S52">TABLE&nbsp;</span><span class="L0S52">OF&nbsp;</span>bapisditm<span class="L0S55">.</span><br>
+<span class="L0S52">DATA</span><span class="L0S55">:&nbsp;</span>ls_items&nbsp;&nbsp;<span class="L0S52">TYPE&nbsp;</span>bapisditm<span class="L0S55">,</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ls_itemsx&nbsp;<span class="L0S52">TYPE&nbsp;</span>bapisditmx<span class="L0S55">.</span><br>
+<span class="L0S52">DATA&nbsp;</span>lt_item_x&nbsp;<span class="L0S52">TYPE&nbsp;</span><span class="L0S52">TABLE&nbsp;</span><span class="L0S52">OF&nbsp;</span>bapisditmx<span class="L0S55">.</span><br>
+<span class="L0S31">*DATA&nbsp;:&nbsp;it_articles&nbsp;TYPE&nbsp;TABLE&nbsp;OF&nbsp;t_dataMaterial.</span><br>
+<span class="L0S52">TYPES&nbsp;</span><span class="L0S55">:&nbsp;</span><span class="L0S52">BEGIN&nbsp;</span><span class="L0S52">OF&nbsp;</span>ty_data<span class="L0S55">,</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;n_commande&nbsp;<span class="L0S52">LIKE&nbsp;</span>apodelta<span class="L0S70">-</span>itm_number<span class="L0S55">,</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;material&nbsp;&nbsp;&nbsp;<span class="L0S52">LIKE&nbsp;</span>mara<span class="L0S70">-</span>matnr<span class="L0S55">,</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;qty&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="L0S52">LIKE&nbsp;</span>vbap<span class="L0S70">-</span>zmeng<span class="L0S55">,</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="L0S52">END&nbsp;</span><span class="L0S52">OF&nbsp;</span>ty_data<span class="L0S55">.</span><br>
+<span class="L0S52">DATA</span><span class="L0S55">:&nbsp;</span>gt_datatab&nbsp;<span class="L0S52">TYPE&nbsp;</span><span class="L0S52">TABLE&nbsp;</span><span class="L0S52">OF&nbsp;</span>ty_data<span class="L0S55">,</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gs_datatab&nbsp;<span class="L0S52">TYPE&nbsp;</span>ty_data<span class="L0S55">,</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gt_datatab1&nbsp;<span class="L0S52">TYPE&nbsp;</span><span class="L0S52">TABLE&nbsp;</span><span class="L0S52">OF&nbsp;</span>ty_data<span class="L0S55">,</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gs_datatab1&nbsp;<span class="L0S52">TYPE&nbsp;</span>ty_data<span class="L0S55">.</span><br>
+<br>
+<span class="L0S52">DATA</span><span class="L0S55">:&nbsp;</span>it_raw&nbsp;<span class="L0S52">TYPE&nbsp;</span>truxs_t_text_data<span class="L0S55">.</span><br>
+<span class="L0S31">*data&nbsp;for&nbsp;bapi&nbsp;start</span><br>
+<span class="L0S52">DATA&nbsp;</span>gt_salesdocument&nbsp;<span class="L0S52">TYPE&nbsp;</span><span class="L0S52">TABLE&nbsp;</span><span class="L0S52">of&nbsp;</span>bapivbeln<span class="L0S55">.</span><br>
+<span class="L0S52">DATA&nbsp;</span><span class="L0S55">:&nbsp;</span>order_header_in&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="L0S52">LIKE&nbsp;</span>bapisdhd1<span class="L0S55">,</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;order_header_inx&nbsp;&nbsp;&nbsp;&nbsp;<span class="L0S52">LIKE&nbsp;</span>bapisdhd1x<span class="L0S55">,</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;salesdocument&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="L0S52">LIKE&nbsp;</span>bapivbeln<span class="L0S70">-</span>vbeln<span class="L0S55">,</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="L0S52">return&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="L0S52">LIKE&nbsp;</span>bapiret2&nbsp;<span class="L0S52">OCCURS&nbsp;</span><span class="L0S32">0&nbsp;</span><span class="L0S52">WITH&nbsp;</span><span class="L0S52">HEADER&nbsp;</span><span class="L0S52">LINE</span><span class="L0S55">,</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;order_items_in&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="L0S52">LIKE&nbsp;</span>bapisditm&nbsp;<span class="L0S52">OCCURS&nbsp;</span><span class="L0S32">0&nbsp;</span><span class="L0S52">WITH&nbsp;</span><span class="L0S52">HEADER&nbsp;</span><span class="L0S52">LINE</span><span class="L0S55">,</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lt_ligne_order&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="L0S52">TYPE&nbsp;</span><span class="L0S52">table&nbsp;</span><span class="L0S52">of&nbsp;</span>bapisditm<span class="L0S55">,</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;order_items_inx&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="L0S52">LIKE&nbsp;</span>bapisditmx&nbsp;<span class="L0S52">OCCURS&nbsp;</span><span class="L0S32">0&nbsp;</span><span class="L0S52">WITH&nbsp;</span><span class="L0S52">HEADER&nbsp;</span><span class="L0S52">LINE</span><span class="L0S55">,</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;order_partners&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="L0S52">LIKE&nbsp;</span>bapiparnr&nbsp;<span class="L0S52">OCCURS&nbsp;</span><span class="L0S32">0&nbsp;</span><span class="L0S52">WITH&nbsp;</span><span class="L0S52">HEADER&nbsp;</span><span class="L0S52">LINE</span><span class="L0S55">,</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;order_condition_in&nbsp;&nbsp;<span class="L0S52">LIKE&nbsp;</span>bapicond&nbsp;<span class="L0S52">OCCURS&nbsp;</span><span class="L0S32">0&nbsp;</span><span class="L0S52">WITH&nbsp;</span><span class="L0S52">HEADER&nbsp;</span><span class="L0S52">LINE</span><span class="L0S55">,</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;order_condition_inx&nbsp;<span class="L0S52">LIKE&nbsp;</span>bapicondx&nbsp;<span class="L0S52">OCCURS&nbsp;</span><span class="L0S32">0&nbsp;</span><span class="L0S52">WITH&nbsp;</span><span class="L0S52">HEADER&nbsp;</span><span class="L0S52">LINE</span><span class="L0S55">,</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;order_schedules_in&nbsp;&nbsp;<span class="L0S52">LIKE&nbsp;</span>bapischdl&nbsp;<span class="L0S52">OCCURS&nbsp;</span><span class="L0S32">0&nbsp;</span><span class="L0S52">WITH&nbsp;</span><span class="L0S52">HEADER&nbsp;</span><span class="L0S52">LINE</span><span class="L0S55">,</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;order_schedules_inx&nbsp;<span class="L0S52">LIKE&nbsp;</span>bapischdlx&nbsp;<span class="L0S52">OCCURS&nbsp;</span><span class="L0S32">0&nbsp;</span><span class="L0S52">WITH&nbsp;</span><span class="L0S52">HEADER&nbsp;</span><span class="L0S52">LINE</span><span class="L0S55">.</span><br>
+<br>
+<span class="L0S52">TYPES&nbsp;</span><span class="L0S55">:&nbsp;</span><span class="L0S52">BEGIN&nbsp;</span><span class="L0S52">OF&nbsp;</span>ty_alv<span class="L0S55">,</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iFichier&nbsp;<span class="L0S52">TYPE&nbsp;</span>ekko<span class="L0S70">-</span>EBELN<span class="L0S55">,</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;status&nbsp;&nbsp;&nbsp;<span class="L0S52">TYPE&nbsp;</span>string<span class="L0S55">,</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vbeln&nbsp;&nbsp;&nbsp;&nbsp;<span class="L0S52">TYPE&nbsp;</span>vbeln<span class="L0S55">,</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;auart&nbsp;&nbsp;&nbsp;&nbsp;<span class="L0S52">TYPE&nbsp;</span>auart<span class="L0S55">,</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="L0S52">message&nbsp;&nbsp;</span><span class="L0S52">TYPE&nbsp;</span>string<span class="L0S55">,</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="L0S52">END&nbsp;</span><span class="L0S52">OF&nbsp;</span>ty_alv<span class="L0S55">.</span><br>
+<br>
+<span class="L0S52">DATA&nbsp;</span><span class="L0S55">:&nbsp;</span>gt_pouralv&nbsp;<span class="L0S52">TYPE&nbsp;</span><span class="L0S52">TABLE&nbsp;</span><span class="L0S52">OF&nbsp;</span>TY_alv<span class="L0S55">,</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gs_pouralv&nbsp;<span class="L0S52">TYPE&nbsp;</span>ty_alv<span class="L0S55">.</span><br>
+<br>
+<span class="L0S52">data&nbsp;</span>qty1&nbsp;<span class="L0S52">LIKE&nbsp;</span>vbap<span class="L0S70">-</span>zmeng<span class="L0S55">.</span><br>
+<span class="L0S52">data&nbsp;</span>qty2&nbsp;<span class="L0S52">LIKE&nbsp;</span>vbap<span class="L0S70">-</span>zmeng<span class="L0S55">.</span><br>
+<span class="L0S52">data&nbsp;</span>qty3&nbsp;<span class="L0S52">LIKE&nbsp;</span>vbap<span class="L0S70">-</span>zmeng<span class="L0S55">.</span><br>
+<span class="L0S52">data&nbsp;</span>qty4&nbsp;<span class="L0S52">LIKE&nbsp;</span>vbap<span class="L0S70">-</span>zmeng<span class="L0S55">.</span><br>
+<span class="L0S52">data&nbsp;</span>qty5&nbsp;<span class="L0S52">LIKE&nbsp;</span>vbap<span class="L0S70">-</span>zmeng<span class="L0S55">.</span><br>
+<br>
+<span class="L0S31">&quot;modif&nbsp;fichier&nbsp;commande&nbsp;start&nbsp;here</span><br>
+<span class="L0S52">DATA</span><span class="L0S55">:&nbsp;</span>filebin1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="L0S52">TYPE&nbsp;&nbsp;</span>filetable<span class="L0S55">,</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;filestr1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="L0S52">TYPE&nbsp;</span>file_table<span class="L0S55">,</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rc1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="L0S52">TYPE&nbsp;</span><span class="L0S52">i</span><span class="L0S55">,</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;p_afile1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="L0S52">TYPE&nbsp;</span>string<span class="L0S55">,</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;default_filename1&nbsp;<span class="L0S52">TYPE&nbsp;</span>string<span class="L0S55">,</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;file_filter1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="L0S52">TYPE&nbsp;</span>string<span class="L0S55">.</span><br>
+<span class="L0S52">TYPES&nbsp;</span><span class="L0S55">:&nbsp;</span><span class="L0S52">BEGIN&nbsp;</span><span class="L0S52">OF&nbsp;</span>ty_modif<span class="L0S55">,</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;numC&nbsp;<span class="L0S52">LIKE&nbsp;</span>apodelta<span class="L0S70">-</span>itm_number<span class="L0S55">,</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;refClient&nbsp;<span class="L0S52">TYPE&nbsp;</span>string<span class="L0S55">,</span><br>
+&nbsp;&nbsp;<span class="L0S52">END&nbsp;</span><span class="L0S52">OF&nbsp;</span>ty_modif<span class="L0S55">.</span><br>
+<span class="L0S52">DATA&nbsp;</span><span class="L0S55">:&nbsp;</span>gt_modif&nbsp;<span class="L0S52">TYPE&nbsp;</span><span class="L0S52">TABLE&nbsp;</span><span class="L0S52">of&nbsp;</span>ty_modif<span class="L0S55">,</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gs_modif&nbsp;<span class="L0S52">TYPE&nbsp;</span>ty_modif<span class="L0S55">.</span><br>
+<br>
+<span class="L0S52">DATA</span><span class="L0S55">:&nbsp;</span>it_raw1&nbsp;<span class="L0S52">TYPE&nbsp;</span>truxs_t_text_data<span class="L0S55">.</span><br>
+<span class="L0S52">DATA&nbsp;</span><span class="L0S55">:&nbsp;</span>ORDER_HEADER_INX1&nbsp;<span class="L0S52">LIKE&nbsp;</span>BAPISDH1X<span class="L0S55">,</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SALESDOCUMENT1&nbsp;<span class="L0S52">LIKE&nbsp;</span>BAPIVBELN<span class="L0S70">-</span>VBELN<span class="L0S55">,</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RETURN1&nbsp;<span class="L0S52">TYPE&nbsp;</span><span class="L0S52">TABLE&nbsp;</span><span class="L0S52">OF&nbsp;&nbsp;</span>BAPIRET2<span class="L0S55">.</span><br>
+<br>
+<span class="L0S31">&quot;&quot;&nbsp;Try&nbsp;and&nbsp;catch</span><br>
+<span class="L0S52">DATA</span><span class="L0S55">:&nbsp;</span>oref&nbsp;&nbsp;&nbsp;<span class="L0S52">TYPE&nbsp;</span><span class="L0S52">REF&nbsp;</span><span class="L0S52">TO&nbsp;</span>cx_root<span class="L0S55">,</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="L0S52">text&nbsp;&nbsp;&nbsp;</span><span class="L0S52">TYPE&nbsp;</span>string<span class="L0S55">.</span></span>
+</body>
